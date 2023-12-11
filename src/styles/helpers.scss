@@ -1,0 +1,65 @@
+@import './variables.scss';
+
+$sizes: (
+    0: $spacing--none,
+    xs: $spacing--xs,
+    s: $spacing--s,
+    m: $spacing--m,
+    l: $spacing--l,
+    xl: $spacing--xl
+);
+
+$sides: (
+    t: top,
+    r: right,
+    b: bottom,
+    l: left,
+    x: left,
+    y: top,
+);
+
+@mixin generateSpacing($property, $short) {
+    @each $sizeKey, $sizeValue in $sizes {
+        .#{$short}-#{$sizeKey} {
+            #{$property}: $sizeValue;
+        }
+
+        @each $sideKey, $sideValue in $sides {
+            .#{$short}#{$sideKey}-#{$sizeKey} {
+                #{$property}-#{$sideValue}: $sizeValue;
+
+                @if $sideKey =="x" {
+                    #{$property}-right: $sizeValue;
+                }
+
+                @if $sideKey =="y" {
+                    #{$property}-bottom: $sizeValue;
+                }
+            }
+        }
+    }
+}
+
+@include generateSpacing(margin, m);
+@include generateSpacing(padding, p);
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text--larger {
+    font-size: larger;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}

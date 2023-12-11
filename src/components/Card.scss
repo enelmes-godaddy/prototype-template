@@ -1,0 +1,12 @@
+@import './../styles/variables.scss';
+
+$card-border-color: #d6d6d6;
+$card-border: 1px solid $card-border-color;
+$card-border-radius: 16px;
+
+.card {
+    background-color: $bg--base;
+    border: $card-border;
+    border-radius: $card-border-radius;
+    max-width: 480px;
+}
